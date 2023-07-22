@@ -143,3 +143,13 @@ def train_network(network, train, l_rate, n_epoch, n_outputs, mu, k0, k1):
             backward_propagate_error(network, expected, k1)
             update_weights(network, row, l_rate, mu)
 
+# Initialize a network
+def initialize_network(n_inputs, n_hidden, n_outputs):
+    network = list()
+    hidden_layer = [{'weights': [random() for i in range(n_inputs + 1)], 'prev': [0 for i in range(n_inputs + 1)]} for i in range(n_hidden)]
+    network.append(hidden_layer)
+    hidden_layer = [{'weights': [random() for i in range(n_hidden + 1)], 'prev': [0 for i in range(n_hidden + 1)]} for i in range(n_hidden)]
+    network.append(hidden_layer)
+    output_layer = [{'weights': [random() for i in range(n_hidden + 1)], 'prev': [0 for i in range(n_hidden + 1)]} for i in range(n_outputs)]
+    network.append(output_layer)
+    return network
