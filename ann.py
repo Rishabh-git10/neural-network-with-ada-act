@@ -79,3 +79,7 @@ def activate(weights, inputs):
         activation += weights[i] * inputs[i]
     return activation
 
+# Transfer neuron activation using Ada-Act
+def transfer(activation, k0, k1):
+    return ada_act(k0, k1, activation)
+
