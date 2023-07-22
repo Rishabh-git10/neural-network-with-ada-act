@@ -133,3 +133,13 @@ def update_weights(network, row, l_rate, mu):
             neuron['weights'][-1] += temp
             neuron['prev'][-1] = temp
 
+# Train a network for a fixed number of epochs
+def train_network(network, train, l_rate, n_epoch, n_outputs, mu, k0, k1):
+    for epoch in range(n_epoch):
+        for row in train:
+            outputs = forward_propagate(network, row, k0, k1)
+            expected = [0 for i in range(n_outputs)]
+            expected[int(row[-1])] = 1
+            backward_propagate_error(network, expected, k1)
+            update_weights(network, row, l_rate, mu)
+
