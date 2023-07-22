@@ -38,3 +38,13 @@ def normalize(dataset, minmax):
     for row in dataset:
         for i in range(len(row)-1):
             row[i] = (row[i] - minmax[i][0]) / (minmax[i][1] - minmax[i][0])
+            
+# Convert string column to float
+def column_to_float(dataset, column):
+    for row in dataset:
+        try:
+            row[column] = float(row[column])
+        except ValueError:
+            print("Error with row", column, ":", row[column])
+            pass
+
