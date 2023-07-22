@@ -20,3 +20,10 @@ def loadCsv(filename):
             dataset[i][j] = float(dataset[i][j])
         trainSet.append(dataset[i])
     return trainSet
+
+# Min-max scaling for normalization
+def minmax(dataset):
+    minmax = list()
+    stats = [[min(column), max(column)] for column in zip(*dataset)]
+    return stats
+
