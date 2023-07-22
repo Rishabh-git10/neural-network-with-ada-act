@@ -72,3 +72,10 @@ def cross_validation_split(dataset, n_folds):
         dataset_split.append(fold)
     return dataset_split
 
+# Calculate neuron activation for an input
+def activate(weights, inputs):
+    activation = weights[-1]
+    for i in range(len(weights)-1):
+        activation += weights[i] * inputs[i]
+    return activation
+
