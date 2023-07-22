@@ -159,3 +159,15 @@ def predict(network, row, k0, k1):
     outputs = forward_propagate(network, row, k0, k1)
     return outputs.index(max(outputs))
 
+# Backpropagation Algorithm With Stochastic Gradient Descent and Ada-Act
+def back_propagation(train, test, l_rate, n_epoch, n_hidden, mu, k0, k1):
+    n_inputs = len(train[0]) - 1
+    n_outputs = len(set([row[-1] for row in train]))
+    network = initialize_network(n_inputs, n_hidden, n_outputs)
+    train_network(network, train, l_rate, n_epoch, n_outputs, mu, k0, k1)
+    predictions = list()
+    for row in test:
+        prediction = predict(network, row, k0, k1)
+        predictions.append(prediction)
+    return predictions
+
