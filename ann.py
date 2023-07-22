@@ -95,3 +95,7 @@ def forward_propagate(network, row, k0, k1):
         inputs = new_inputs
     return inputs
 
+# Calculate the derivative of an neuron output with Ada-Act
+def transfer_derivative(output, k1):
+    return k1
+
