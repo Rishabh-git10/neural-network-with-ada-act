@@ -83,3 +83,15 @@ def activate(weights, inputs):
 def transfer(activation, k0, k1):
     return ada_act(k0, k1, activation)
 
+# Forward propagate input to a network output
+def forward_propagate(network, row, k0, k1):
+    inputs = row
+    for layer in network:
+        new_inputs = []
+        for neuron in layer:
+            activation = activate(neuron['weights'], inputs)
+            neuron['output'] = transfer(activation, k0, k1)
+            new_inputs.append(neuron['output'])
+        inputs = new_inputs
+    return inputs
+
