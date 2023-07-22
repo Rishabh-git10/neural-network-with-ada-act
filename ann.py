@@ -171,3 +171,22 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden, mu, k0, k1):
         predictions.append(prediction)
     return predictions
 
+# Evaluate an algorithm using a cross-validation split
+def run_algorithm(dataset, algorithm, n_folds, l_rate, n_epoch, n_hidden, mu, k0, k1):
+    folds = cross_validation_split(dataset, n_folds)
+    scores = list()
+    for fold in folds:
+        train_set = list(folds)
+        train_set.remove(fold)
+        train_set = sum(train_set, [])
+        test_set = list()
+        for row in fold:
+            row_copy = list(row)
+            test_set.append(row_copy)
+            row_copy[-1] = None
+        predicted = algorithm(train_set, test_set, l_rate, n_epoch, n_hidden, mu, k0, k1)
+        actual = [row[-1] for row in fold]
+        accuracy = accuracy_metric(actual, predicted)
+        scores.append(accuracy)
+    return scores
+
