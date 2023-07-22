@@ -6,3 +6,7 @@ import csv
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import cohen_kappa_score
 
+# Ada-Act Activation Function
+def ada_act(k0, k1, x):
+    return k0 + k1 * x
+
