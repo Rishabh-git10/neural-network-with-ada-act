@@ -153,3 +153,9 @@ def initialize_network(n_inputs, n_hidden, n_outputs):
     output_layer = [{'weights': [random() for i in range(n_hidden + 1)], 'prev': [0 for i in range(n_hidden + 1)]} for i in range(n_outputs)]
     network.append(output_layer)
     return network
+
+# Make a prediction with a network
+def predict(network, row, k0, k1):
+    outputs = forward_propagate(network, row, k0, k1)
+    return outputs.index(max(outputs))
+
