@@ -10,3 +10,13 @@ from sklearn.metrics import cohen_kappa_score
 def ada_act(k0, k1, x):
     return k0 + k1 * x
 
+# Load a CSV file
+def loadCsv(filename):
+    trainSet = []
+    lines = csv.reader(open(filename, 'r'))
+    dataset = list(lines)
+    for i in range(len(dataset)):
+        for j in range(4):
+            dataset[i][j] = float(dataset[i][j])
+        trainSet.append(dataset[i])
+    return trainSet
