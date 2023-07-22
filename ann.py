@@ -48,3 +48,14 @@ def column_to_float(dataset, column):
             print("Error with row", column, ":", row[column])
             pass
 
+# Convert string column to integer
+def column_to_int(dataset, column):
+    class_values = [row[column] for row in dataset]
+    unique = set(class_values)
+    lookup = dict()
+    for i, value in enumerate(unique):
+        lookup[value] = i
+    for row in dataset:
+        row[column] = lookup[row[column]]
+    return lookup
+
